@@ -23,7 +23,7 @@ begin
     (
         ID int not null identity, 
         SurName varchar(255) not null, 
-        BudgetValue not null, -- add the type
+        BudgetValue decimal(18, 2) not null,
         constraint PK_Family primary key clustered (ID)
     )
 end 
@@ -32,7 +32,7 @@ if object_id('dbo.Basket', 'U') is null
 begin
     create table dbo.Basket
     (
-        ID not null identity,
+        ID int not null identity,
         ID_SKU int not null,
         ID_Family int not null,
         Quantity int not null,
