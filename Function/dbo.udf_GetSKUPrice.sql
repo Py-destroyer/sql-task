@@ -1,4 +1,4 @@
-use database; 
+use TSQL2012; 
 
 create function dbo.udf_GetSKUPrice(
     @ID_SKU int
