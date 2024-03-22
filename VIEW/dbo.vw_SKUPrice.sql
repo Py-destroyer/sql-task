@@ -1,4 +1,4 @@
-use database;
+use TSQL2012;
 
 if object_id('dbo.vw_SKUPrice') is null
 begin
