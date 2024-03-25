@@ -9,9 +9,9 @@ begin
     declare @Price DECIMAL(18, 2);
     
     -- Рассчитываем стоимость продукта
-    select @Price = sum(Value) / nullif(sum(Quantity), 0)
-    from dbo.Basket
-    where ID_SKU = @ID_SKU;
+    select @Price = sum(b.Value) / nullif(sum(b.Quantity), 0)
+    from dbo.Basket as b
+    where b.ID_SKU = @ID_SKU;
     
     return @Price;
 end
