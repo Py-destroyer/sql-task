@@ -26,7 +26,14 @@ begin
 
     -- Подсчет всех покупок для переданной семьи
     declare 
-    @TotalValue decimal(18, 2) = (select sum(Value) from dbo.Basket as b where b.ID_Family = select ID from dbo.Family where SurName = @FamilySurName)
+    @TotalValue decimal(18, 2) = (
+                                    select sum(Value) 
+                                    from dbo.Basket as b 
+                                    where b.ID = (
+                                                        select ID 
+                                                        from dbo.Family 
+                                                        where SurName = @FamilySurName)
+    )
     
     -- Обновление данных в таблице dbo.Family
     update f
