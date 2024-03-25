@@ -7,5 +7,5 @@ begin
         select 
             SKU.*
             ,dbo.udf_GetSKUPrice(SKU.ID) as Price
-        from dbo.SKU;
+        from dbo.SKU
 end
