@@ -1,4 +1,4 @@
-use database;
+use TSQL2012;
 
 create or alter trigger dbo.TR_Basket_insert_update on dbo.Basket
 after insert, update
