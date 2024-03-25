@@ -8,7 +8,18 @@ begin
         @ID_SKU int
         ,@RowCount int
 
-    select @ID_SKU = ID_SKU
+    select @ID_SKU = ID
     from inserted;
 
-    
+    select @RowCount = count(*)
+    from dbo.Basket
+    where ID = @ID_SKU
+
+    update b
+    set DiscountValue = case
+                            when @RowCount >= 2
+                                then Value * 0.05
+                            else 0
+    from dbo.Basket as b
+    where ID = @ID_SKU
+end
