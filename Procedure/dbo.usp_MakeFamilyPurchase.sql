@@ -15,7 +15,7 @@ begin
         if not exists (
             select 1 
             from dbo.Family as f
-            where SurName = @FamilySurName
+            where f.SurName = @FamilySurName
         )
         begin 
             set @ErrorMessage = 'Family does not exist'
@@ -27,12 +27,12 @@ begin
     -- Подсчет всех покупок для переданной семьи
     declare 
     @TotalValue decimal(18, 2) = (
-                                    select sum(Value) 
+                                    select sum(b.Value) 
                                     from dbo.Basket as b 
                                     where b.ID_Family = (
-                                                        select ID 
-                                                        from dbo.Family 
-                                                        where SurName = @FamilySurName)
+                                                        select f.ID 
+                                                        from dbo.Family as f
+                                                        where f.SurName = @FamilySurName)
     )
     
     -- Обновление данных в таблице dbo.Family
